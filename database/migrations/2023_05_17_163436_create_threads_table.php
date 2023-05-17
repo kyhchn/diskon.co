@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
             $table->string('judul');
             $table->string('isi');
             $table->integer('likes');

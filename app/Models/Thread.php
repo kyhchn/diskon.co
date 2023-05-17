@@ -9,8 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Thread extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'judul',
+        'isi',
+        'likes'
+    ];
 
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
