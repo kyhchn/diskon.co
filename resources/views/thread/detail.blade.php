@@ -6,7 +6,7 @@
     </x-slot>
     <div class="px-4 py-4">
         @if (isset($thread))
-        <p>{{$thread}}</p>
+            <p>{{ $thread }}</p>
         @else
             <p>data threads masih kosong</p>
         @endif
