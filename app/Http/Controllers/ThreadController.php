@@ -6,6 +6,7 @@ use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class ThreadController extends Controller
 {
@@ -83,6 +84,10 @@ class ThreadController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $id->destroy();
+        if ($id = Thread::where('id', $id)->delete()) {
+            return redirect('/thread')->with('message', 'Thread berhasil dihapus');
+        } else {
+        }
     }
 }
