@@ -68,9 +68,9 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($id)
     {
-        return view();
+        return view('thread.edit');
     }
 
     /**
