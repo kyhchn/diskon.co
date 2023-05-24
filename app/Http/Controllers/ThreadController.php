@@ -70,7 +70,7 @@ class ThreadController extends Controller
      */
     public function edit()
     {
-        //
+        return view();
     }
 
     /**
@@ -78,7 +78,7 @@ class ThreadController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
     }
 
     /**
