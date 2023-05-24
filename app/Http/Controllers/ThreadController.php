@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ThreadController extends Controller
 {
@@ -15,8 +15,10 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        return view('thread.index', ['threads' => Thread::all()]);
-        //
+        // return view('thread.index', ['threads' => Thread::all()]);
+        return view('thread.index', [
+            'threads' => Thread::latest()->filter(request(['judul', 'search']))->paginate(6)
+        ]);
     }
     /**
      * Show the form for creating a new resource.
@@ -88,6 +90,21 @@ class ThreadController extends Controller
         if ($id = Thread::where('id', $id)->delete()) {
             return redirect('/thread')->with('message', 'Thread berhasil dihapus');
         } else {
+        }
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->has('search')) {
+            $threads = Thread::latest()->filter($request->only('search'))->where('judul', 'LIKE', '%' . $request->query('search') . '%')
+                ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%');
+
+            // $threads = DB::table('thread')->where('judul', 'LIKE', '%' . $request->search . '%')
+            //     ->orWhere('isi', 'LIKE', '%' . $request->search . '%')
+            //     ->get();
+            return view('thread.index', ['threads' => $threads]);
+        } else {
+            return view('thread.index');
         }
     }
 }
