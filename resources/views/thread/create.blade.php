@@ -10,12 +10,18 @@
         </div>
 
         <div>
+            <x-input-label for="lokasi" :value="__('Lokasi')" />
+            <x-text-input id="lokasi" name="lokasi" type="text" class="mt-1 block w-full" :value="old('lokasi')"
+                required autofocus autocomplete="lokasi" />
+            <x-input-error class="mt-2" :messages="$errors->get('lokasi')" />
+        </div>
+
+        <div>
             <x-input-label for="isi" :value="__('Isi')" />
             <x-text-input id="isi" name="isi" type="text" class="mt-1 block w-full" :value="old('isi')"
                 required autofocus autocomplete="isi" />
             <x-input-error class="mt-2" :messages="$errors->get('isi')" />
         </div>
-
 
         <x-primary-button class="mt-2">{{ __('Post') }}</x-primary-button>
         {{-- <div class="flex items-center gap-4">

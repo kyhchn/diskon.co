@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('threads', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('judul');
-            $table->string('lokasi');
+            $table->integer('komen_id');
+            $table->foreignId('user_id')->constrained('users');
             $table->string('isi');
-            $table->integer('likes');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('threads');
+        Schema::dropIfExists('replies');
     }
 };

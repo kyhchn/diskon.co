@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
@@ -24,20 +24,12 @@ class Thread extends Model
         }
     }
 
-    // public function search(Request $request)
-    // {
-    //     if ($request->has('search')) {
-    //         $threads = Thread::where('judul', 'LIKE', '%' . $request->search . '%')
-    //             ->orWhere('isi', 'LIKE', '%' . $request->search . '%')
-    //             ->get();
-    //         return view('thread.index', ['threads' => $threads]);
-    //     } else {
-    //         return view('thread.index', ['threads' => Thread::all()]);
-    //     }
-    // }
-
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class);
+    }
+    public function komen(): HasMany
+    {
+        return $this->hasMany(Komen::class);
     }
 }

@@ -12,7 +12,7 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
         // return view('thread.index', ['threads' => Thread::all()]);
         return view('thread.index', [
@@ -34,12 +34,14 @@ class ThreadController extends Controller
     {
         $request->validate([
             'judul' => 'required|string',
-            'isi' => 'required|string'
+            'isi' => 'required|string',
+            'lokasi' => 'required|string'
         ]);
 
         $thread = new Thread;
         $thread->judul = $request->judul;
         $thread->isi = $request->isi;
+        $thread->lokasi = $request->lokasi;
         $thread->likes = 0;
         $thread->user_id = auth()->user()->id;
         $thread->save();
@@ -110,7 +112,7 @@ class ThreadController extends Controller
         if ($request->has('search')) {
             $threads = Thread::latest()->filter($request->only('search'))->where('judul', 'LIKE', '%' . $request->query('search') . '%')
                 ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%')->get();
-            if($threads->isEmpty()){
+            if ($threads->isEmpty()) {
                 return view('thread.index');
             }
             return view('thread.index', ['threads' => $threads]);
