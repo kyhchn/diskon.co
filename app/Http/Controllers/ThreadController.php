@@ -90,7 +90,7 @@ class ThreadController extends Controller
         $thread->isi = $request->isi;
         $thread->update();
 
-        return redirect('thread.index');
+        return Redirect::to('/thread');
         
     }
 

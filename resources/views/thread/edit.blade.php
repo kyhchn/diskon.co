@@ -1,5 +1,6 @@
 <x-app-layout>
     <form class="px-3 py-2" method="post" action="/thread/{{$thread->id}}" class="mt-6 space-y-6">
+        @method('PUT')
         @csrf
 
         <div>
