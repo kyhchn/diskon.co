@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThreadController;
+use App\Models\Thread;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/thread/{thread}/edit', [ThreadController::class, 'edit'])->name('thread.edit');
     Route::put('/thread/{thread}', [ThreadController::class, 'update'])->name('thread.update');
+    Route::get('/thread/search', [ThreadController::class, 'search'])->name('thread.search');
     Route::resource('thread', ThreadController::class);
 });
 
