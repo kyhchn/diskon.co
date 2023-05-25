@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ThreadController extends Controller
@@ -13,7 +12,7 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // return view('thread.index', ['threads' => Thread::all()]);
         return view('thread.index', [
@@ -110,11 +109,10 @@ class ThreadController extends Controller
     {
         if ($request->has('search')) {
             $threads = Thread::latest()->filter($request->only('search'))->where('judul', 'LIKE', '%' . $request->query('search') . '%')
-                ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%');
-
-            // $threads = DB::table('thread')->where('judul', 'LIKE', '%' . $request->search . '%')
-            //     ->orWhere('isi', 'LIKE', '%' . $request->search . '%')
-            //     ->get();
+                ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%')->get();
+            if($threads->isEmpty()){
+                return view('thread.index');
+            }
             return view('thread.index', ['threads' => $threads]);
         } else {
             return view('thread.index');

@@ -31,7 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/thread/{thread}/edit', [ThreadController::class, 'edit'])->name('thread.edit');
     Route::put('/thread/{thread}', [ThreadController::class, 'update'])->name('thread.update');
     Route::resource('thread', ThreadController::class);
-
 });
 
 require __DIR__ . '/auth.php';
