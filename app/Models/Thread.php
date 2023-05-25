@@ -20,7 +20,7 @@ class Thread extends Model
     {
         if ($filters['search'] ?? false) {
             $query->where('judul', 'like', '%' . request('search') . '%')
-                ->orWhere('isi', 'like', '%' . request('search') . '%');
+                ->orWhere('isi', 'like', '%' . request('search') . '%')->orWhere('lokasi', 'like', '%' . request('search') . '%');
         }
     }
 
