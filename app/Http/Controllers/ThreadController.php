@@ -82,17 +82,18 @@ class ThreadController extends Controller
     public function update(Request $request, Thread $thread)
     {
         $request->validate([
-            'judul'=>['required'],
-            'isi'=>['required']
+            'judul' => ['required'],
+            'isi' => ['required'],
+            'lokasi' => ['required']
         ]);
 
-      
+
         $thread->judul = $request->judul;
+        $thread->lokasi = $request->lokasi;
         $thread->isi = $request->isi;
         $thread->update();
 
         return Redirect::to('/thread');
-        
     }
 
     /**

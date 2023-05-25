@@ -1,19 +1,26 @@
 <x-app-layout>
-    <form class="px-3 py-2" method="post" action="/thread/{{$thread->id}}" class="mt-6 space-y-6">
+    <form class="px-3 py-2" method="post" action="/thread/{{ $thread->id }}" class="mt-6 space-y-6">
         @method('PUT')
         @csrf
 
         <div>
             <x-input-label for="name" :value="__('Judul')" />
-            <x-text-input id="judul" name="judul" type="text" class="mt-1 block w-full" value="{{$thread->judul}}" required
-                autofocus autocomplete="judul" />
+            <x-text-input id="judul" name="judul" type="text" class="mt-1 block w-full" value="{{ $thread->judul }}"
+                required autofocus autocomplete="judul" />
             <x-input-error class="mt-2" :messages="$errors->get('judul')" />
         </div>
 
         <div>
+            <x-input-label for="lokasi" :value="__('Lokasi')" />
+            <x-text-input id="lokasi" name="lokasi" type="text" class="mt-1 block w-full"
+                value="{{ $thread->lokasi }}" required autofocus autocomplete="judul" />
+            <x-input-error class="mt-2" :messages="$errors->get('lokasi')" />
+        </div>
+
+        <div>
             <x-input-label for="isi" :value="__('Isi')" />
-            <x-text-input id="isi" name="isi" type="text" class="mt-1 block w-full" value="{{$thread->isi}}"
-                required autofocus autocomplete="isi" />
+            <x-text-input id="isi" name="isi" type="text" class="mt-1 block w-full"
+                value="{{ $thread->isi }}" required autofocus autocomplete="isi" />
             <x-input-error class="mt-2" :messages="$errors->get('isi')" />
         </div>
 
