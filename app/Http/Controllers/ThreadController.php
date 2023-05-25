@@ -67,16 +67,30 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Thread $thread)
     {
-        return view('thread.edit');
+        return view('thread.edit', [
+            'thread' => $thread
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Thread $thread)
     {
+        $request->validate([
+            'judul'=>['required'],
+            'isi'=>['required']
+        ]);
+
+      
+        $thread->judul = $request->judul;
+        $thread->isi = $request->isi;
+        $thread->update();
+
+        return Redirect::to('/thread');
+        
     }
 
     /**

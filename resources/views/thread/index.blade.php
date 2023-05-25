@@ -15,6 +15,12 @@
                     @csrf
                     @method('DELETE')
                     <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
+                </form>
+
+                <form action="{{ route('thread.edit', $thread->id) }}" method="GET">
+                    @csrf
+                    <button class="text-red-500"><i class="fa-solid fa-trash"></i>Edit</button>
+                </form>
             @endforeach
         @else
             <p>data threads masih kosong</p>
