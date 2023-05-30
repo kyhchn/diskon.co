@@ -15,7 +15,7 @@ class ThreadController extends Controller
     public function index()
     {
         // return view('thread.index', ['threads' => Thread::all()]);
-        return view('thread.all', [
+        return view('thread.index', [
             'threads' => Thread::latest()->filter(request(['judul', 'search']))->paginate(6)
         ]);
     }
@@ -101,10 +101,13 @@ class ThreadController extends Controller
      */
     public function destroy(string $id)
     {
-        // $id->destroy();
-        if ($id = Thread::where('id', $id)->delete()) {
+        $thread = Thread::where('id', $id)->first();
+
+        if ($thread->user_id == auth()->user()->id) {
+            $thread->delete();
             return redirect('/thread')->with('message', 'Thread berhasil dihapus');
         } else {
+            return redirect()->back()->with('error', 'You\'r not authorized');
         }
     }
 
@@ -112,13 +115,13 @@ class ThreadController extends Controller
     {
         if ($request->has('search')) {
             $threads = Thread::latest()->filter($request->only('search'))->where('judul', 'LIKE', '%' . $request->query('search') . '%')
-                ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%')->orWhere('lokasi', 'LIKE', '%' . $request->query('search') . '%')->get();
+                ->orWhere('isi', 'LIKE', '%' . $request->query('search') . '%')->get();
             if ($threads->isEmpty()) {
-                return view('thread.all');
+                return view('thread.index');
             }
-            return view('thread.all', ['threads' => $threads]);
+            return view('thread.index', ['threads' => $threads]);
         } else {
-            return view('thread.all');
+            return view('thread.index');
         }
     }
 }

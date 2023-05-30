@@ -5,6 +5,8 @@
         </h2>
     </x-slot>
 
+    @include('partials._search')
+
     <div class="px-4 py-4">
         @if (isset($threads))
             @foreach ($threads as $thread)
