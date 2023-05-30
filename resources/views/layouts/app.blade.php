@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <title>Diskon.co | {{ config('app.name', 'Diskon.co') }}</title> --}}
+    <title>Diskon.co | @yield('tittle')</title>
 
-    <title>Diskon.co | {{ config('app.name', 'Diskon.co') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -30,7 +31,7 @@
         @endif
 
         <!-- Page Content -->
-        <main>
+        <main class=" w-10/12 bg-blue-200 mx-auto">
             {{ $slot }}
         </main>
     </div>

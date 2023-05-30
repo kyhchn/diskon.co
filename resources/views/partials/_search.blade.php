@@ -1,14 +1,10 @@
 <form action="{{ route('thread.search') }}">
-    <div class="relative border-1 border-gray-100  rounded-lg  ">
-        <div class="absolute top-4 left-3">
-            <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
-        </div>
+    <div class="relative border-1 border-black rounded-lg mt-2 ms-3">
         <input type="text" name="search"
-            class="h-14 w-full pl-10 pr-20 rounded-full  z-0 focus:shadow focus:outline-none"
-            placeholder="Search Threads Here..." />
+            class="h-11 w-full pl-5 pr-20 rounded-full  z-0 focus:shadow focus:outline-none" placeholder="Cari Diskon" />
         <div class="absolute top-2 right-2">
-            <button type="submit" class="h-10 w-20 text-white rounded-full bg-red-500 hover:bg-red-600">
-                Search
+            <button type="submit" class="h-7 w-16 text-white rounded-full bg-red-500 hover:bg-red-600">
+                Cari
             </button>
         </div>
     </div>
