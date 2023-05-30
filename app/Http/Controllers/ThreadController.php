@@ -101,10 +101,13 @@ class ThreadController extends Controller
      */
     public function destroy(string $id)
     {
-        // $id->destroy();
-        if ($id = Thread::where('id', $id)->delete()) {
+        $thread = Thread::where('id', $id)->first();
+
+        if ($thread->user_id == auth()->user()->id) {
+            $thread->delete();
             return redirect('/thread')->with('message', 'Thread berhasil dihapus');
         } else {
+            return redirect()->back()->with('error', 'You\'r not authorized');
         }
     }
 
