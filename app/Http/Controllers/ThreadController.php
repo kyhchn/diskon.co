@@ -69,11 +69,18 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function edit(Thread $thread)
     {
-        return view('thread.edit', [
-            'thread' => $thread
-        ]);
+        if (auth()->user()->id == $thread->user_id) {
+            return view('thread.edit', [
+                'thread' => $thread
+            ]);
+        }
+        return redirect()->back()->with('error', 'You\'r not authorized');
     }
 
     /**
