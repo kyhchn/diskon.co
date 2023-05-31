@@ -32,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/thread/{thread}/edit', [ThreadController::class, 'edit'])->name('thread.edit');
     Route::put('/thread/{thread}', [ThreadController::class, 'update'])->name('thread.update');
     Route::get('/thread/search', [ThreadController::class, 'search'])->name('thread.search');
+    Route::delete('/komen/{id}', [KomenController::class, 'destroy'])->name('komen.destroy');
+    Route::get('/komen/create/{thread_id}', [KomenController::class, 'create'])->name('komen.create');
+    Route::get('/komen/{komen}/edit', [KomenController::class, 'edit'])->name('komen.edit');
+    Route::put('/komen/{komen}', [KomenController::class, 'update'])->name('komen.update');
+    Route::post('/komen', [KomenController::class, 'store'])->name('komen.store');
     Route::resource('thread', ThreadController::class);
 });
 
