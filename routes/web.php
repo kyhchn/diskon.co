@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\KomenController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
-use App\Models\Thread;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/komen/{komen}/edit', [KomenController::class, 'edit'])->name('komen.edit');
     Route::put('/komen/{komen}', [KomenController::class, 'update'])->name('komen.update');
     Route::post('/komen', [KomenController::class, 'store'])->name('komen.store');
+    Route::post('/reply', [ReplyController::class, 'store'])->name('reply.store');
+    Route::delete('/reply/{id}', [ReplyController::class, 'destroy'])->name('reply.destroy');
+    Route::get('/reply/create/{komen_id}', [ReplyController::class, 'create'])->name('reply.create');
+    Route::get('/reply/{reply}/edit', [ReplyController::class, 'edit'])->name('reply.edit');
+    Route::put('/reply/{reply}', [ReplyController::class, 'update'])->name('reply.update');
     Route::resource('thread', ThreadController::class);
 });
 
