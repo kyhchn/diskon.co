@@ -3,7 +3,7 @@
         @csrf
 
         <div>
-            <x-input-label for="isi" :value="__('Isi')" />
+            <x-input-label for="isi" :value="__('Reply')" />
             <x-text-input id="isi" name="isi" type="text" class="mt-1 block w-full" required autofocus
                 autocomplete="judul" />
             <x-input-error class="mt-2" :messages="$errors->get('isi')" />

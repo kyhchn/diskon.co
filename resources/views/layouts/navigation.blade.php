@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class=" dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class=" fixed top-0 left-0 w-full text-white p-4 bg-white" id="navbar">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 ">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -10,24 +10,24 @@
                     </a>
                 </div>
 
-                <!-- Navigation Links -->
+                {{-- <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                </div>
-                <!-- Navigation Links -->
+                </div> --}}
+                <!-- Navigation Links  to thread-->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('thread.index')" :active="request()->routeIs('thread.index')">
                         {{ __('Thread') }}
                     </x-nav-link>
                 </div>
-                <!-- Navigation Links  TO THREAD    -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                <!-- Navigation Links  to your thread-->
+                {{-- <x-nav-link :href="route('thread.edit', ['thread' => $thread->id])" :active="request()->routeIs('thread.edit')">
+                    {{ __('Your Thread') }}
+                </x-nav-link> --}}
+
+
             </div>
             <div>
                 @include('partials._search')
@@ -61,6 +61,10 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="'/thread/' . auth()->user()->username">
+                            {{ __('My Thread') }}
+                        </x-dropdown-link>
+
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -125,18 +129,30 @@
             </div>
         </div>
     </div>
+    ada
+
 </nav>
 
-
-{{-- create postingan --}}
 <div class=" w-1/2  mx-auto mt-7  mb-5">
-    <div class="flex justify-center items-center w-10/12 bg-slate-200 mx-auto py-2 rounded-lg drop-shadow-lg">
+    {{-- <div class="flex justify-center items-center w-10/12 bg-slate-200 mx-auto py-2 rounded-lg drop-shadow-lg">
         <div class="rounded-full bg-slate-500 w-12 h-12"></div>
         <a href="#" class="rounded-full bg-slate-500 ml-4 py-2 px-5 w-10/12 text-left" onclick="showPopup()">Buat
-            diskon anda</a>
+            Postingan baru</a>
+    </div> --}}
+    <div class="fixed bottom-4 right-4">
+        <button
+            class="bg-slate-500 text-white rounded-full w-12 h-12 flex justify-center items-center transition-all duration-300 hover:scale-110"
+            onclick="showPopup()">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                </path>
+            </svg>
+        </button>
     </div>
 
-    <div id="popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+
+    <div id="popup" class=" hidden   fixed inset-0 bg-none  bg-opacity-50 flex justify-center items-center">
         <div class="bg-white rounded-lg p-6 w-500">
             <h2 class="text-xl font-bold mb-4">Buat postingan thread baru anda!</h2>
             <form class="px-3 py-2" method="post" action="{{ route('thread.store') }}" class="mt-6 space-y-6">
@@ -175,6 +191,9 @@
 
 </div>
 
+
+
+
 <script>
     function showPopup() {
         var popup = document.getElementById('popup');
@@ -185,4 +204,19 @@
         var popup = document.getElementById('popup');
         popup.classList.add('hidden');
     }
+
+    let prevScrollPos = window.pageYOffset;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+        const currentScrollPos = window.pageYOffset;
+
+        if (prevScrollPos > currentScrollPos) {
+            navbar.classList.remove('hidden');
+        } else {
+            navbar.classList.add('hidden');
+        }
+
+        prevScrollPos = currentScrollPos;
+    });
 </script>
