@@ -1,4 +1,4 @@
-@section('tittle', 'profil')
+@section('tittle', 'profile')
 <x-app-layout>
     {{-- <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
@@ -7,9 +7,9 @@
     </x-slot> --}}
 
     <div class="">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6 bg-purple-600 pb-96">
-            <div class="p-4 sm:p-8 bg-blue-400 dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl bg-yellow-300 mx-auto">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8 space-y-6  pb-96">
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl  mx-auto">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>

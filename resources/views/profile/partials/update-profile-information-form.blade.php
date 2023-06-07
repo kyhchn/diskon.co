@@ -1,6 +1,6 @@
 <section>
     <header>
-        <h1 class="text-5xl font-medium text-gray-900 dark:text-gray-100 text-center bg-red-700">
+        <h1 class="text-5xl font-medium text-gray-900 dark:text-gray-100 text-center">
             {{ __('Akun Saya') }}
         </h1>
 
@@ -13,13 +13,13 @@
     {{-- dibagi jadi 3 kolom --}}
     <div class="grid grid-cols-3 gap-4">
         {{-- kolom kiri --}}
-        <div class=" col-span-1 bg-red-400 ">
+        <div class=" col-span-1 ">
             <img src="{{ asset('assets/postingan1.svg') }}" class="mx-auto mt-10" alt="">
         </div>
         {{-- end kolom kiri --}}
 
         <!-- kolom kanan-->
-        <div class=" col-span-2 bg-slate-400">
+        <div class=" col-span-2 ">
             <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                 @csrf
             </form>
